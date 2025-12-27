@@ -1,8 +1,10 @@
+from typing import Optional
+
+
 import torch, torchvision
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.modules.utils import _pair, _quadruple
-
 
 
 class MedianPool2d(nn.Module):
@@ -41,13 +43,21 @@ class MedianPool2d(nn.Module):
         return x
 
 
-def normalization(x, mean=torch.Tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1).cuda(),
-                  std=torch.Tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1).cuda()):
+def normalization(x, mean: Optional[torch.Tensor]=None, std: Optional[torch.Tensor]=None):
+    if mean is None:
+        mean = torch.Tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1).cuda()
+    if std is None:
+        std = torch.Tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1).cuda()
+
     return (x - mean) / (std + 1e-6)
 
 
-def denormalization(x, mean=torch.Tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1).cuda(),
-                    std=torch.Tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1).cuda()):
+def denormalization(x, mean: Optional[torch.Tensor]=None, std: Optional[torch.Tensor]=None):
+    if mean is None:
+        mean = torch.Tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1).cuda()
+    if std is None:
+        std = torch.Tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1).cuda()
+
     return x * std + mean
 
 def convert_relu_to_sigmoid(model):
