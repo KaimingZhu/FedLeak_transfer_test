@@ -28,7 +28,7 @@ Following common practices in the vision and GAN literature, we consider two sim
 
 Both variants keep FedLeak’s optimization objective and training loop unchanged, and are only applied when the target resolution ($224 \times 224$) is required by the evaluation pipeline.
 
-We have highlighted our modifications with `# 🌟 New` and `# 🎯 Origin` in these files.
+We have highlighted our adaptations with `# 🌟 New` and `# 🎯 Origin` in these files.
 
 ### 🎯 Sanity Checks
 
@@ -46,4 +46,5 @@ We additionally report qualitative reconstructions at $224 \times 224 \times 3$ 
 - [`resize_224_showcase.ipynb`](./resize_224_showcase.ipynb): the resize-based generator.
 
 For transparency, we retain and report both variants in this repository; our experiments use the variant that performs better under identical optimization settings.
+
 
