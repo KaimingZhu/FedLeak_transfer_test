@@ -139,8 +139,11 @@ def make_resizing_func(generated_res: int, expected_res: int) -> Callable[[torch
     else:
         return lambda x: F.interpolate(x, size=(expected_res, expected_res), mode="bilinear", align_corners=False) 
 
-
+# 🎯 Origin
+# def FedLeak(client_grads, original_label, model, grad_diff_loss):
+# 🌟 New
 def FedLeak(client_grads, original_label, model, grad_diff_loss, img_res=128, need_upscaling=True, device=None):
+    
     # 🎯 Origin
     # device = torch.device("cuda:0")
     # 🌟 New
@@ -177,6 +180,7 @@ def FedLeak(client_grads, original_label, model, grad_diff_loss, img_res=128, ne
         # reconstructed_imgs = netG(noise)
         # 🌟 New
         reconstructed_imgs = resizing_func(netG(noise))
+        
         fake_output = model(reconstructed_imgs)
         dummy_loss = cross_entropy(fake_output, original_label)
         fake_dy_dx = torch.autograd.grad(dummy_loss, model.parameters(), create_graph=True)
@@ -219,9 +223,9 @@ def FedLeak(client_grads, original_label, model, grad_diff_loss, img_res=128, ne
 
     # 🎯 Origin
     # return upscale(median_filter(reconstructed_imgs))
-    
     # 🌟 New
     reconstructed_imgs = median_filter(reconstructed_imgs)
     if need_upscaling:
         reconstructed_imgs = upscale(reconstructed_imgs)
     return reconstructed_imgs
+
