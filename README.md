@@ -1,7 +1,7 @@
 # Integration Notes: Integrating FedLeak (Sec.'25) into Breaching
 ### ℹ️ **Background & Motivation**
 
-This repository documents how we integrate the official [FedLeak implementation(Zenodo v1)](10.5281/zenodo.15532455) into the [Breaching](https://github.com/JonasGeiping/breaching/) evaluation framework, in order to support a unified evaluation protocol across multiple Gradient Inversion Attack baselines.
+This repository documents how we integrate the official [FedLeak implementation(Zenodo v1)](https://10.5281/zenodo.15532455) into the [Breaching](https://github.com/JonasGeiping/breaching/) evaluation framework, in order to support a unified evaluation protocol across multiple Gradient Inversion Attack baselines.
 
 Our goal is not to modify the core FedLeak algorithm, but to address a practical ***resolution mismatch*** between the two pipelines when evaluating on ImageNet reconstructions.
 
@@ -46,6 +46,7 @@ We additionally report qualitative reconstructions at $224 \times 224 \times 3$ 
 - [`resize_224_showcase.ipynb`](./resize_224_showcase.ipynb): the resize-based generator.
 
 For transparency, we retain and report both variants in this repository; our experiments use the variant that performs better under identical optimization settings.
+
 
 
 
