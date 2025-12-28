@@ -24,7 +24,7 @@ Following common practices in the vision and GAN literature, we consider two sim
 - **Center-crop-based adaptation**
   - Generator produces $256 \times 256 \times 3$ images
   - Central $224 \times 224 \times 3$ crop is extracted
-  - Implementation: [`center_crop_generator.py`](./center_crop_generator.py)
+  - Implementation: [`centercrop_generator.py`](./centercrop_generator.py)
 
 Both variants keep FedLeak’s optimization objective and training loop unchanged, and are only applied when the target resolution ($224 \times 224 \times 3$) is required by the evaluation pipeline.
 
@@ -46,6 +46,7 @@ We additionally report qualitative reconstructions at $224 \times 224 \times 3$ 
 - [`resize_224_showcase.ipynb`](./resize_224_showcase.ipynb): the resize-based generator.
 
 For transparency, we retain and report both variants in this repository; our experiments use the variant that performs better under identical optimization settings.
+
 
 
 
