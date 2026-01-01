@@ -231,9 +231,9 @@ def FedLeak(client_grads, original_label, model, grad_diff_loss, img_res=128, ne
         if i % plot_interval == 0:
             current_timestamp = time.time()
             print(
-                f"| It: {iteration + 1} "
+                f"| It: {i + 1} "
                 f"| Loss: {total_loss.item():2.4f} "
-                f"| Time: {timestamp - current_timestamp:6.8f}s |"
+                f"| Time: {current_timestamp - timestamp:6.2f}s |"
             )
             timestamp = current_timestamp
         
