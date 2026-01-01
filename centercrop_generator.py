@@ -1,3 +1,4 @@
+import time
 from typing import Callable
 
 import torch, torchvision, utils
@@ -143,7 +144,7 @@ def make_resizing_func(generated_res: int, expected_res: int) -> Callable[[torch
 # 🎯 Origin
 # def FedLeak(client_grads, original_label, model, grad_diff_loss):
 # 🌟 New
-def FedLeak(client_grads, original_label, model, grad_diff_loss, img_res=128, need_upscaling=True, device=None):
+def FedLeak(client_grads, original_label, model, grad_diff_loss, img_res=128, need_upscaling=True, batch_size=16, num_iters=10000, plot_interval=1000, device=None):
     
     # 🎯 Origin
     # device = torch.device("cuda:0")
@@ -152,12 +153,11 @@ def FedLeak(client_grads, original_label, model, grad_diff_loss, img_res=128, ne
         device = torch.device("cuda:0")
     
     latent_vec = 128
-    batch_size = 16
     lr = 1e-2
-    num_iters = 10000
     channel = 256
-    
     # 🎯 Origin
+    # batch_size = 16
+    # num_iters = 10000
     # img_res = 128
     # netG = Generator(image_res=img_res, in_channel=channel).to(device)
     # 🌟 New
@@ -175,7 +175,11 @@ def FedLeak(client_grads, original_label, model, grad_diff_loss, img_res=128, ne
     # inferenced_labels = client_grads[-2].sum(dim=1).topk(k=original_label.size(0), largest=False)[1].long()
     # print(compare_diff(inferenced_labels, original_label))
 
-    for iters in tqdm(range(num_iters)):
+    # 🎯 Origin
+    # for iters in tqdm(range(num_iters)):
+    # 🌟 New
+    timestamp = time.time()
+    for i in range(num_iters):
         optimizerG.zero_grad()
 
         # 🎯 Origin
@@ -222,6 +226,17 @@ def FedLeak(client_grads, original_label, model, grad_diff_loss, img_res=128, ne
 
         optimizerG.step()
         scheduler.step()
+        
+        # 🌟 New
+        if i % plot_interval == 0:
+            current_timestamp = time.time()
+            print(
+                f"| It: {iteration + 1} "
+                f"| Loss: {total_loss.item():2.4f} "
+                f"| Time: {timestamp - current_timestamp:6.8f}s |"
+            )
+            timestamp = current_timestamp
+        
 
     # 🎯 Origin
     # return upscale(median_filter(reconstructed_imgs))
