@@ -35,8 +35,8 @@ We have highlighted our adaptations with `# 🌟 New` and `# 🎯 Origin` in the
 To ensure that these adaptations do not introduce unintended side effects, we perform sanity checks under settings where no resolution adaptation is introduced. In such cases, the adapted generators should behave identically to the original one.
 
 - [`sanity_check_showcase.ipynb`](./sanity_check_showcase.ipynb) Original FedLeak generator (reference behavior)
-- [`resize_showcase.ipynb`](./resize_showcase.ipynb) Resize-based generator under sanity-check settings.
-- [`centercrop_showcase.ipynb`](./centercrop_showcase.ipynb) Center-crop-based generator under sanity-check settings.
+- [`sanity_check_resize_showcase.ipynb`](./sanity_check_resize_showcase.ipynb) Resize-based generator under sanity-check settings.
+- [`sanity_check_centercrop_showcase.ipynb`](./sanity_check_centercrop_showcase.ipynb) Center-crop-based generator under sanity-check settings.
 
 ### 🏃 Evaluation at $224 \times 224 \times 3$
 
@@ -45,7 +45,9 @@ We additionally report qualitative reconstructions at $224 \times 224 \times 3$ 
 - [`centercrop_224_showcase.ipynb`](./centercrop_224_showcase.ipynb): the center-crop-based generator.
 - [`resize_224_showcase.ipynb`](./resize_224_showcase.ipynb): the resize-based generator.
 
-For transparency, we retain and report both variants in this repository; our experiments use the variant that performs better under identical optimization settings.
+For transparency, we retain and report both variants in this repository; our experiments use the variant that performs better under identical optimization settings. 
+
+For all the experiments we have performed to figure out the better variant, please see [`./extended_evaluations`](./extended_evaluations) for more details and results.
 
 
 
