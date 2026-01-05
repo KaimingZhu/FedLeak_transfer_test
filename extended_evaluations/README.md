@@ -14,11 +14,11 @@ Here are details of these evaluations:
 
 ### 🚩 How to run
 
-There are two ways to run with it, including directly running with `ipynb`, and run with scripts:
+There are two ways to run with it, including directly running with `.ipynb`, and run with scripts in the parent folder:
 
 ```bash
 $ pwd
-~/dev/FedLeak_transfer_test/extended_evaluations
+~/dev/FedLeak_transfer_test
 
 $ python run_notebook.py
 ```
@@ -26,4 +26,5 @@ $ python run_notebook.py
 ### 🔬 What's more
 
 - We also provide the results in our evaluations, please see `./ImageNet/` and `./LC25000` for more details.
+
 - For the summary results, please refer to [`./statistics.xlsx`](./statistics.xlsx).
