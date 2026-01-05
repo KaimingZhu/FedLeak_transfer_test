@@ -19,12 +19,13 @@ from typing import Callable, Dict
 
 import torch, torchvision, utils
 import torch.nn as nn
-import layers
+import fedleak.layers as layers
 import torch.nn.functional as F
 import torch.optim as optim
 from tqdm import tqdm
 
-from utils import upscale
+from fedleak.utils import upscale
+import fedleak.utils as utils
 
 
 class ConvBlock(nn.Module):
